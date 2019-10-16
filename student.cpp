@@ -1,69 +1,85 @@
 #include <iostream>
-#include <Cmath>
-#include <cstdlib>
+#include <string>
+
 using namespace std;
-class triangle
+
+/*----------------------------------*
+ Class Definition
+*-----------------------------------*/
+class student
 {
 private:
-	double a, b, c;
+ string name;
+	int number;
+	bool gender;
+	int year;
+	int month;
+	int day;
+	float high;
+	float weight;
+	float score;
+ string address;
+
 public:
-	void setabc(double x, double y, double z)
+	void input()
 	{
-		if (((x + y )> z)&((x + z) > y)&((y + z )> x))
-		{
-			a = x;
-			b = y;
-			c = z;
-		}
-		else
-		{
-			cout << "²»ÄÜ¹¹³ÉÈý½ÇÐÎ" << endl;
-			exit(0);
-		}
+ cout << "è¯·è¾“å…¥å§“åï¼š" << endl;
+ cin >> name;
+ cout << "è¯·è¾“å…¥æ€§åˆ«(1ä¸ºç”·ç”Ÿ0ä¸ºå¥³ç”Ÿï¼‰ï¼š" << endl;
+ cin >> gender;
+ cout << "è¯·è¾“å…¥å‡ºç”Ÿå¹´æœˆæ—¥" << endl;
+ cin >> year >> month >> day;
+ cout << "è¯·è¾“å…¥èº«é«˜(cm)ä½“é‡(kg)" << endl;
+ cin >> weight >> high;
+ cout << "è¯·è¾“å…¥é«˜è€ƒæˆç»©" << endl;
+ cin >> score;
+ cout << "è¯·è¾“å…¥å®¶åº­ä½å€" << endl;
+ cin >> address;
 	}
-	void perimeter()
+	void display()
 	{
-		double per;
-		per = a + b + c;
-		cout << per << endl;
+ cout << "è¾“å‡ºç»“æžœä¸ºï¼š" << endl;
+ cout << "åå­—:" << name << endl;
+ cout << "æ€§åˆ«(1ä¸ºç”·ç”Ÿ0ä¸ºå¥³ç”Ÿï¼‰:" << gender << endl;
+ cout << "å‡ºç”Ÿå¹´æœˆæ—¥:" << year <<"."<< month<<"." << day << endl;
+ cout << "èº«é«˜ï¼ˆcmï¼‰ä½“é‡(kg):" << weight<<"  " << high << endl;
+ cout << "é«˜è€ƒæˆç»©:" << score << endl;
+ cout << "å®¶åº­ä½å€:" << address << endl;
 	}
-	void area()
+	void rewrite()
 	{
-		double p = (a + b + c) / 2;
-		double s;
-		s = sqrt(p*(p - a)*(p - b)*(p - c));
-		cout << s << endl;
-	}
-	void typeabc()
-	{
-		double A, B, C;
-		A = (b*b + c * c - a * a) / (2 * b*c);
-		B = (a*a + c * c - b * b) / (2 * a*c);
-		C = (a*a + b * b - c * c) / (2 * a*b);
-		if (A > 0 && B > 0 && C > 0)
+		int n;
+ cout << "è¯·è¾“å…¥æ•°å­—ï¼š" << endl;
+ cout << "è¾“å…¥1ä¿®æ”¹å§“å" << endl;
+ cout << "è¾“å…¥2ä¿®æ”¹æ€§åˆ«" << endl;
+ cout << "è¾“å…¥3ä¿®æ”¹å‡ºç”Ÿå¹´æœˆæ—¥" << endl;
+ cout << "è¾“å…¥4ä¿®æ”¹èº«é«˜ä½“é‡" << endl;
+ cout << "è¾“å…¥5ä¿®æ”¹é«˜è€ƒæˆç»©" << endl;
+ cout << "è¾“å…¥6ä¿®æ”¹å®¶åº­ä½å€" << endl;
+ cout << "è¾“å…¥0ä¸éœ€è¦ä¿®æ”¹" << endl;
+ cin >> n;
+		switch (n)
 		{
-			cout << "´ËÈý½ÇÐÎÎªÈñ½ÇÈý½ÇÐÎ" << endl;
+		case 1:cout << "ä¿®æ”¹å§“å"; cin >> name; break;
+		case 2:cout << "ä¿®æ”¹æ€§åˆ«"; cin >> gender; break;
+		case 3:cout << "ä¿®æ”¹å‡ºç”Ÿå¹´æœˆæ—¥"; cin >> year >> month >> day; break;
+		case 4:cout << "ä¿®æ”¹èº«é«˜ä½“é‡"; cin >> weight >> high; break;
+		case 5:cout << "ä¿®æ”¹é«˜è€ƒæˆç»©"; cin >> score; break;
+		case 6:cout << "ä¿®æ”¹å®¶åº­ä½å€"; cin >> address; break;
+		default:break;
 		}
-		else if ((A < 0)&(B < 0)&(C < 0))
-		{
-			cout << "´ËÈý½ÇÐÎÎª¶Û½ÇÈý½ÇÐÎ" << endl;
-		}
-		else
-			cout << "´ËÈý½ÇÐÎÎªÖ±½ÇÈý½ÇÐÎ" << endl;
+ cout << "ä¿®æ”¹æˆåŠŸ" << endl;
 	}
 };
-int main()
+
+void main()
 {
-	triangle test;
-	double x, y, z;
-	cout << "ÊäÈëÈý½ÇÐÎµÄÈýÌõ±ß£º" << endl;
-	cin >> x >> y >> z;
-	test.setabc(x, y, z);
-	cout << "´ËÈý½ÇÐÎÖÜ³¤Îª:" << endl;
-	test.perimeter();
-	cout << "´ËÈý½ÇÐÎÃæ»ýÎª:" << endl;
-	test.area();
-	test.typeabc();
+ student test;
+ test.input();
+ test.rewrite();
+ test.display();
 	system("pause");
-	return 0;
-}
+
+
+
+} 
