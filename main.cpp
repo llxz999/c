@@ -1,85 +1,69 @@
 #include <iostream>
-#include <string>
-
+#include <Cmath>
+#include <cstdlib>
 using namespace std;
-
-/*----------------------------------*
-		 Class Definition
-*-----------------------------------*/
-class student
+class triangle
 {
 private:
-	string name;
-	int number;
-	bool gender;
-	int year;
-	int month;
-	int day;
-	float high;
-	float weight;
-	float score;
-	string address;
-
+	double a, b, c;
 public:
-	void input()
+	void setabc(double x, double y, double z)
 	{
-		cout << "请输入姓名：" << endl;
-		cin >> name;
-		cout << "请输入性别(1为男生0为女生）：" << endl;
-		cin >> gender;
-		cout << "请输入出生年月日" << endl;
-		cin >> year >> month >> day;
-		cout << "请输入身高(cm)体重(kg)" << endl;
-		cin >> weight >> high;
-		cout << "请输入高考成绩" << endl;
-		cin >> score;
-		cout << "请输入家庭住址" << endl;
-		cin >> address;
-	}
-	void display()
-	{
-		cout << "输出结果为：" << endl;
-		cout << "名字:" << name << endl;
-		cout << "性别(1为男生0为女生）:" << gender << endl;
-		cout << "出生年月日:" << year <<"."<< month<<"." << day << endl;
-		cout << "身高（cm）体重(kg):" << weight<<"  " << high << endl;
-		cout << "高考成绩:" << score << endl;
-		cout << "家庭住址:" << address << endl;
-	}
-	void rewrite()
-	{
-		int n;
-		cout << "请输入数字：" << endl;
-		cout << "输入1修改姓名" << endl;
-		cout << "输入2修改性别" << endl;
-		cout << "输入3修改出生年月日" << endl;
-		cout << "输入4修改身高体重" << endl;
-		cout << "输入5修改高考成绩" << endl;
-		cout << "输入6修改家庭住址" << endl;
-		cout << "输入0不需要修改" << endl;
-		cin >> n;
-		switch (n)
+		if (((x + y )> z)&((x + z) > y)&((y + z )> x))
 		{
-		case 1:cout << "修改姓名"; cin >> name; break;
-		case 2:cout << "修改性别"; cin >> gender; break;
-		case 3:cout << "修改出生年月日"; cin >> year >> month >> day; break;
-		case 4:cout << "修改身高体重"; cin >> weight >> high; break;
-		case 5:cout << "修改高考成绩"; cin >> score; break;
-		case 6:cout << "修改家庭住址"; cin >> address; break;
-		default:break;
+			a = x;
+			b = y;
+			c = z;
 		}
-		cout << "修改成功" << endl;
+		else
+		{
+			cout << "不能构成三角形" << endl;
+			exit(0);
+		}
+	}
+	void perimeter()
+	{
+		double per;
+		per = a + b + c;
+		cout << per << endl;
+	}
+	void area()
+	{
+		double p = (a + b + c) / 2;
+		double s;
+		s = sqrt(p*(p - a)*(p - b)*(p - c));
+		cout << s << endl;
+	}
+	void typeabc()
+	{
+		double A, B, C;
+		A = (b*b + c * c - a * a) / (2 * b*c);
+		B = (a*a + c * c - b * b) / (2 * a*c);
+		C = (a*a + b * b - c * c) / (2 * a*b);
+		if (A > 0 && B > 0 && C > 0)
+		{
+			cout << "此三角形为锐角三角形" << endl;
+		}
+		else if ((A < 0)&(B < 0)&(C < 0))
+		{
+			cout << "此三角形为钝角三角形" << endl;
+		}
+		else
+			cout << "此三角形为直角三角形" << endl;
 	}
 };
-
-void main()
+int main()
 {
-	student test;
-	test.input();
-	test.rewrite();
-	test.display();
+	triangle test;
+	double x, y, z;
+	cout << "输入三角形的三条边：" << endl;
+	cin >> x >> y >> z;
+	test.setabc(x, y, z);
+	cout << "此三角形周长为:" << endl;
+	test.perimeter();
+	cout << "此三角形面积为:" << endl;
+	test.area();
+	test.typeabc();
 	system("pause");
-
-	
-
+	return 0;
 }
