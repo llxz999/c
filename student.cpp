@@ -1,85 +1,147 @@
 #include <iostream>
 #include <string>
+#include<time.h>
 
 using namespace std;
-
-/*----------------------------------*
- Class Definition
-*-----------------------------------*/
+class school;
 class student
 {
 private:
- string name;
-	int number;
+	string name;
 	bool gender;
+	string id;
+	double GPA;
+public:
+	static double  n;
+	student();
+	student(std::string name,bool gender,std::string id);
+	double printgpa();
+	~student();
+	void display(school &);
+	void sdisplay();
+	
+	
+};
+class school
+{
+private:
+	string city;
+	string street;
+	int number;
+public:
+	school();
+	school(std::string city, std::string street, int number);
+	~school();
+	friend  class student;
+	void sprint() const;
+};
+class date
+{
 	int year;
 	int month;
 	int day;
-	float high;
-	float weight;
-	float score;
- string address;
-
+	int age;
 public:
-	void input()
-	{
- cout << "è¯·è¾“å…¥å§“åï¼š" << endl;
- cin >> name;
- cout << "è¯·è¾“å…¥æ€§åˆ«(1ä¸ºç”·ç”Ÿ0ä¸ºå¥³ç”Ÿï¼‰ï¼š" << endl;
- cin >> gender;
- cout << "è¯·è¾“å…¥å‡ºç”Ÿå¹´æœˆæ—¥" << endl;
- cin >> year >> month >> day;
- cout << "è¯·è¾“å…¥èº«é«˜(cm)ä½“é‡(kg)" << endl;
- cin >> weight >> high;
- cout << "è¯·è¾“å…¥é«˜è€ƒæˆç»©" << endl;
- cin >> score;
- cout << "è¯·è¾“å…¥å®¶åº­ä½å€" << endl;
- cin >> address;
-	}
-	void display()
-	{
- cout << "è¾“å‡ºç»“æžœä¸ºï¼š" << endl;
- cout << "åå­—:" << name << endl;
- cout << "æ€§åˆ«(1ä¸ºç”·ç”Ÿ0ä¸ºå¥³ç”Ÿï¼‰:" << gender << endl;
- cout << "å‡ºç”Ÿå¹´æœˆæ—¥:" << year <<"."<< month<<"." << day << endl;
- cout << "èº«é«˜ï¼ˆcmï¼‰ä½“é‡(kg):" << weight<<"  " << high << endl;
- cout << "é«˜è€ƒæˆç»©:" << score << endl;
- cout << "å®¶åº­ä½å€:" << address << endl;
-	}
-	void rewrite()
-	{
-		int n;
- cout << "è¯·è¾“å…¥æ•°å­—ï¼š" << endl;
- cout << "è¾“å…¥1ä¿®æ”¹å§“å" << endl;
- cout << "è¾“å…¥2ä¿®æ”¹æ€§åˆ«" << endl;
- cout << "è¾“å…¥3ä¿®æ”¹å‡ºç”Ÿå¹´æœˆæ—¥" << endl;
- cout << "è¾“å…¥4ä¿®æ”¹èº«é«˜ä½“é‡" << endl;
- cout << "è¾“å…¥5ä¿®æ”¹é«˜è€ƒæˆç»©" << endl;
- cout << "è¾“å…¥6ä¿®æ”¹å®¶åº­ä½å€" << endl;
- cout << "è¾“å…¥0ä¸éœ€è¦ä¿®æ”¹" << endl;
- cin >> n;
-		switch (n)
-		{
-		case 1:cout << "ä¿®æ”¹å§“å"; cin >> name; break;
-		case 2:cout << "ä¿®æ”¹æ€§åˆ«"; cin >> gender; break;
-		case 3:cout << "ä¿®æ”¹å‡ºç”Ÿå¹´æœˆæ—¥"; cin >> year >> month >> day; break;
-		case 4:cout << "ä¿®æ”¹èº«é«˜ä½“é‡"; cin >> weight >> high; break;
-		case 5:cout << "ä¿®æ”¹é«˜è€ƒæˆç»©"; cin >> score; break;
-		case 6:cout << "ä¿®æ”¹å®¶åº­ä½å€"; cin >> address; break;
-		default:break;
-		}
- cout << "ä¿®æ”¹æˆåŠŸ" << endl;
-	}
+	date();
+	date(int year, int month, int day,int age);
+	~date();
+	void print(student a) const;
 };
 
-void main()
+date::date()
 {
- student test;
- test.input();
- test.rewrite();
- test.display();
+	cout << "µ÷ÓÃdateÎÞ²Î¹¹Ôìº¯Êý" << endl;
+}
+date::date(int year, int month, int day,int age)
+{
+	this->year = year;
+	this->month = month;
+	this->day = day;
+	this->age = age;
+	cout << "µ÷ÓÃdateÓÐ²Î¹¹Ôìº¯Êý" << endl;
+}
+
+date::~date()
+{
+	cout << "µ÷ÓÃdateÎö¹¹º¯Êý" << endl;
+}
+
+school::school()
+{
+	cout << "µ÷ÓÃschoolÎÞ²Î¹¹Ôìº¯Êý" << endl;
+}
+school::school(std::string city, std::string street, int number)
+{
+	this->city = city;
+	this->street = street;
+	this->number = number;
+	cout << "µ÷ÓÃschoolÓÐ²Î¹¹Ôìº¯Êý" << endl;
+}
+school::~school()
+{
+	cout << "µ÷ÓÃschoolÎö¹¹º¯Êý" << endl;
+}
+double student::n = 0;
+student::student()
+{
+	cout << "µ÷ÓÃstudentÎÞ²Î¹¹Ôìº¯Êý" << endl;
+}
+void school::sprint() const
+{
+	cout<< "³ÇÊÐ:"<<city<<endl;
+	cout<< "½ÖµÀ:"<<street<<endl;
+	cout<<"½ÖµÀºÅ:"<<number<<endl;
+}
+student::student(std::string name, bool gender, std::string id)
+{
+	this->name = name;
+	this->gender = gender;
+	this->id = id; 
+	n++;
+	cout << "µ÷ÓÃstudentÓÐ²Î¹¹Ôìº¯Êý" << endl;
+}
+
+student::~student()
+{
+	cout << "µ÷ÓÃstudentÎö¹¹º¯Êý" << endl;
+}
+void student::sdisplay()
+{
+	cout << "ÐÕÃû:" << name << endl;
+	cout << "ÐÔ±ð£¨ÄÐ1Å®0£©£º" << gender << endl; 
+	cout << "Ñ§ºÅ£º" << id << endl;
+	
+	
+}
+void date::print(student a) const 
+{
+	cout << "³öÉúÈÕÆÚ:" << endl;
+	cout << "Äê:" <<year<< endl;
+	cout << "ÔÂ:" << month<< endl;
+	cout << "ÈÕ:" << day<< endl;
+	cout << "ÄêÁä:"<<age << endl;
+}
+double student:: printgpa()
+{
+	GPA=rand() % 6 + 1;
+	cout << "¼¨µã:"<<GPA <<endl;
+	cout << "Ñ§Éú¸öÊý:" << n << endl;
+	return 0;
+}
+void student::display(school& obj)
+{
+	obj.sprint();
+}
+int main()
+{
+	student A("lili",1,"201811010125");
+	A.sdisplay();
+	srand((int)time(NULL));
+	A.printgpa();
+	date q(1999, 9, 9,20);
+	q.print(A);
+	school w("¼ÃÄÏ", "´óÑ§Â·", 1);
+	A.display(w);
 	system("pause");
-
-
-
-} 
+	return 0;
+}
